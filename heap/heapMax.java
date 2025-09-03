@@ -76,17 +76,27 @@ class heapMax{
             int left = i*2;
             int right = i*2+1;
 
-            if(left<n && num[largest]<num[left]){
+            if(left<=n && num[largest]<num[left]){
                 largest=left;
             }
 
-            if(right<n && num[largest]<num[right]){
+            if(right<=n && num[largest]<num[right]){
                 largest=right;
             }
 
             if(largest!=i){
                 swap(num,largest,i);
                 heapify(num, n, largest);
+            }
+        }
+
+        static void heapSort(int[] arr,int n){
+            int size = n;
+
+            while(size>0){
+                swap(arr, 1,size);
+                size--;
+                heapify(arr, size, 1);
             }
         }
     
@@ -111,6 +121,13 @@ class heapMax{
         }
 
         System.out.println("Printing heapify now: ");
+
+        for(int i=1;i<n;i++){
+            System.out.print(arr[i]+" ");
+        }
+        System.out.println();
+        heapSort(arr, n);
+        System.out.println("Printing heap sort now: ");
 
         for(int i=1;i<n;i++){
             System.out.print(arr[i]+" ");
